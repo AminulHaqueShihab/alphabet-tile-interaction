@@ -9,9 +9,13 @@ import { useState } from 'react';
 const AlphabetTiles = () => {
 	const [outputString, setOutputString] = useState<string>('');
 
+	// Function to handle click on a letter
 	const handleClick = (letter: string) => {
+		// Append the clicked letter to the output string
 		let newOutputString = outputString + letter;
+		// Replace three or more consecutive letters with a single underscore
 		newOutputString = replaceConsecutiveLetters(newOutputString);
+		// Update the output string state
 		setOutputString(newOutputString);
 	};
 
@@ -27,6 +31,7 @@ const AlphabetTiles = () => {
 				borderRadius={'8px'}
 				border='1px solid'
 			>
+				{/* Display the output string */}
 				<Text
 					id='outputString'
 					px={4}
@@ -46,6 +51,7 @@ const AlphabetTiles = () => {
 				}}
 				gap={4}
 			>
+				{/* Map through the letters array and create a button for each letter */}
 				{letters.map((letter, index) => (
 					<KeyCapButton
 						key={index}
@@ -54,6 +60,7 @@ const AlphabetTiles = () => {
 					/>
 				))}
 			</Grid>
+			{/* Button to clear the output string */}
 			<KeyCapButton
 				label='Clear'
 				w={'auto'}
